@@ -1,8 +1,12 @@
 # springoot_exam
 基于springboot开发的在线考试系统
+
 数据库：
+
 地址：rm-bp1f7cpw4852f079gvo.mysql.rds.aliyuncs.com
+
 用户：zwz20011001
+
 密码：ZZwz20011001
 
 数据库名为example
@@ -11,7 +15,9 @@
 
 
 地址IP为本地ip
+
 #页面跳转
+
 教师和管理员登录界面
 http://localhost:8081/alogin
 
