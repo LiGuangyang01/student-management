@@ -26,6 +26,9 @@ http://localhost:8081
 
 
 另外我们提供了查看项目几个用户
+	
 	管理员=>     用户名:admin    密码:admin
+	
 	学生用户=>     用户名:student   密码:student
+	
 	老师=>      用户名:teacher1  密码:teacher1
