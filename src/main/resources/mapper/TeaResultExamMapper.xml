@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.TeaResultExamMapper">
+    <select id="manageStuExam"  parameterType="int" resultType="com.example.entity.StuResult" >
+     select l.lessonname,r.radioscores,r.checkscores,r.total,
+       r.createtime,i.stuid,i.stuname
+    from stu_examresult r,stu_information i,lesson l
+    where
+    l.teacherid=#{value}
+   and  r.taotiid=l.taotiid
+   and  r.username=i.username;
+  </select>
+
+    <select id="findTeacheridByusername"  parameterType="String" resultType="int" >
+   select teacherid
+   from teacher_information
+   where username=#{value}
+  </select>
+
+    <select id="TeaExamlesson"  parameterType="String" resultType="com.example.entity.Lesson" >
+   select l.lessonname,l.createtime
+   from lesson l ,teacher_information t
+   where t.username=#{value}
+   and t.teacherid=l.teacherid
+  </select>
+    <!-- 进行增加考试课程信息-->
+    <insert id="addExamLesson" parameterType="com.example.entity.Lesson">
+	INSERT INTO lesson
+			(
+			lessonname,
+			teacherid,
+			createtime
+			)
+			VALUES
+			(
+			#{lessonname},
+			#{teacherid},
+			#{createtime}
+			)
+    </insert>
+</mapper>

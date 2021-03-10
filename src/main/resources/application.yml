@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: sdsz
+  datasource:  #database 数据源
+    url: jdbc:mysql://rm-bp1f7cpw4852f079gvo.mysql.rds.aliyuncs.com:3306/example?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: zwz20011001
+    password: ZZwz20011001
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  mvc:
+    static-path-pattern: /static/**
+
+  thymeleaf:
+    prefix: classpath:/templates/
+
+#tomcat端口
+server:
+  port: 8081
+
+#起别名,省略写mybatis的xml中的resultType的全路径
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  #扫描实体类
+  type-aliases-package: com.example.pojo
+                                

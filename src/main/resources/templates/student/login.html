@@ -1,0 +1,76 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>学生服务</title>
+    <link rel="stylesheet" type="text/css" href="/static/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/easyui/themes/icon.css">
+    <script type="text/javascript" src="/static/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/easyui/locale/easyui-lang-zh_CN.js"></script>
+
+    <script type="text/javascript">
+        function toregister() {
+            window.location.href = "sturegister";
+        }
+    </script>
+    <style>
+        .login {
+            width: 400px;
+            height: 400px;
+            background-color: rgba(56, 55, 55, 0.93);
+            margin: 200px auto;
+            border-radius: 20px;
+            box-sizing: border-box;
+            padding:20px;
+            box-shadow: 0px 10px 20px rgba(32, 32, 32, 0.993)
+          
+
+        }
+        .loginInfo {
+
+            display:flex;
+            flex-direction: row;
+            justify-content:center;
+            margin-top: 50px;
+           
+        }
+     
+    </style>
+</head>
+
+<body style="background-image:url('/static/image/adult-business-computer-contemporary-380769.jpg');background-size:cover">
+    <div class="login">
+
+        <div class="loginHead" style="text-align:center;margin-top:50px;">
+            <font face="仿宋" size="10" color="white" style="display:block">学 生 登 录</font>
+            <span style="color:red;" th:text="${msg}"></span>
+        </div>
+        <div class="loginInfo">
+            <form action="loginsubmit" method="post">
+                <table cellpadding="10px">
+                    <tr>
+                        <td>
+                            <font color="#E8FFF5">帐&nbsp;号</font>
+                        </td>
+                        <td><input class="easyui-textbox" style="width: 200px;" data-options="iconCls:'icon-man'" name="username"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <font color="#E8FFF5">密&nbsp;码</font>
+                        </td>
+                        <td><input class="easyui-passwordbox" style="width: 200px;" name="password"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="登录" style="background:#1a293e;color:#fff;border:none; width: 70px; height:40px"></td>
+                        <td align="right"><input type="button" id="btn" value="注册" style="background:rgb(255, 255, 255);color: #404d5e; box-sizing: border-box; border:1px solid #404d5e;width: 70px; height:40px"
+                                onclick="toregister()"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

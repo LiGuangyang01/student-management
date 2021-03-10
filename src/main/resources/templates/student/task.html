@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作业上传</title>
+  <link rel="stylesheet" type="text/css" href="/static/css/shangchuanstyle.css"/>
+</head>
+<body background="/static/image/back1.jpg">
+  <header class="upload-hedaer">
+    <a href="/stu/index"  class="upload-fh"></a>
+    <div>上传作业</div>
+    <div>   </div>
+  </header>
+  <section class="upload-section">
+    <article class="upload-article-text">
+      <textarea style="background-color: #5bc0de" oninput="autoTextarea(this)" placeholder="作业内容" class="upload-textarea"></textarea>
+    </article>
+    <article class="upload-piclist">
+       <div class="upload-file">
+           <input type="file" id="file" accept="/themes/img/*" multiple onchange="imgChange()"/>
+       </div>
+    </article>
+    <div class="submit" onclick="submit()">
+      上传
+    </div>
+  </section>
+  <div class="upload-sm">
+	  <p>说明：</p>
+	  <ol>
+	  	<li>作业内容右下角可拉伸，使其改变显示长度。</li>
+		<li>图片或文件最多上传9个。</li>
+		
+	  </ol>
+  </div>
+  <script src="/static/js/shangchuan.js"></script>
+
+
+</body>
+</html>

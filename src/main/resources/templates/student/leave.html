@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body background="/static/image/back1.jpg">
+
+<h3 style="color: white" align="center">请假申请</h3>
+<br>
+<form style="padding-left: 660px;">
+    <div class="form-group">
+        <label style="color: white" for="exampleInputEmail1">请假去处</label>
+        <input style="width: 200px" type="text" class="form-control" id="exampleInputEmail1" placeholder="济南市历城区">
+    </div>
+    <div class="form-group">
+        <label style="color: white" for="exampleInputPassword1">请假日期</label>
+        <input style="width: 200px" type="date" class="form-control" id="exampleInputPassword1" >
+    </div>
+    <div class="form-group">
+        <label style="color: white" for="exampleInputFile">请假原因</label>
+        <br>
+        <textarea style="width: 200px" type="text" id="exampleInputFile"></textarea>
+
+    </div>
+    <div class="form-group">
+        <label style="color: #ffffff" for="exampleInputFile">请假天数</label>
+        <br>
+        <input style="width: 200px" type="text" id="exampleInputFiles"></input>
+
+    </div>
+    <button type="submit" class="btn btn-default" onclick="f()">申请</button>
+</form>
+
+</body>
+
+
+
+<script>
+    function f() {
+        alert("已提交申请")
+    }
+</script>
+</html>

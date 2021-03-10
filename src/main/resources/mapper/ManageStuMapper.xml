@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.ManageStuMapper">
+    <!--	返回所有学生用户信息给前端页面-->
+    <select id="findStudentByroles"  parameterType="String"  resultType="com.example.entity.StuInformation" >
+    select  l.id,l.username,l.password,s.stuid,s.stuname
+    from t_login l,stu_information s
+     where l.roles = #{value}
+     and
+     l.username=s.username
+  </select>
+
+    <!--    返回修改界面表单的信息-->
+    <select id="findStudentById"  parameterType="int"  resultType="com.example.entity.User" >
+    select  id,username,password from t_login where id = #{value}
+  </select>
+
+
+    <!-- 根据id修改学生登录用户数据 -->
+    <update id="updateStuUser" parameterType="com.example.entity.User">
+		UPDATE t_login
+			SET
+			password = #{password}
+		WHERE
+			id = #{id}
+	</update>
+</mapper>

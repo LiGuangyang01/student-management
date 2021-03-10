@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.ExamQuestionsMapper">
+
+        <resultMap id="seeQuestions" type="com.example.entity.Questions">
+            <id column="id" property="id" />
+            <result column="subject" property="subject" />
+            <result column="type" property="type" />
+            <result column="lessonname" property="lessonname" />
+            <result column="taotiid" property="taotiid" />
+            <result column="answer" property="answer" />
+            <result column="optiona" property="optiona" />
+            <result column="optionb" property="optionb" />
+            <result column="optionc" property="optionc" />
+            <result column="optiond" property="optiond" />
+        </resultMap>
+
+
+    <select id="findExamRadioQuestions" parameterType="int" resultType="java.util.HashMap">
+   select q.id,q.subject,
+        q.type, q.taotiid,
+        q.optiona,q.optionb,
+        q.optionc,q.optiond,
+         q.answer,l.lessonname
+        from  lesson l,questions q
+        where
+       q.taotiid=l.taotiid
+       and
+       q.type='单选'
+       and
+       l.taotiid=#{value}
+  </select>
+
+    <select id="findExamCheckboxQuestions" parameterType="int" resultType="java.util.HashMap">
+   select q.id,q.subject,
+        q.type, q.taotiid,
+        q.optiona,q.optionb,
+        q.optionc,q.optiond,
+         q.answer,l.lessonname
+        from  lesson l,questions q
+        where
+       q.taotiid=l.taotiid
+       and
+       q.type='多选'
+       and
+       l.taotiid=#{value}
+  </select>
+
+    <select id="findExamAnswerById" parameterType="String" resultMap="seeQuestions">
+        select
+         q.id,q.taotiid,
+        q.answer,q.type,
+        l.lessonname
+       from
+       lesson l,questions q
+         where
+         q.id=#{value}
+         and
+         l.taotiid=q.taotiid
+    </select>
+
+</mapper>

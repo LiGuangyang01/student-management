@@ -1,0 +1,6 @@
+spring:
+  datasource:  #database 数据源
+    url: jdbc:mysql://rm-bp1f7cpw4852f079gvo.mysql.rds.aliyuncs.com:3306/example?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: zwz20011001
+    password: ZZwz20011001
+    driver-class-name: com.mysql.cj.jdbc.Driver

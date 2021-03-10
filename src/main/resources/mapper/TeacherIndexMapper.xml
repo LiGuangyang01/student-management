@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.TeacherIndexMapper">
+    <select id="ExamQuestionByteacherid"  parameterType="int" resultType="com.example.entity.Questions" >
+  select q.id,q.subject,q.type,l.lessonname,
+    q.optiona,q.optionb,q.optionc,q.optiond,q.answer
+    from lesson l,questions q
+    where l.taotiid=q.taotiid
+    and
+   l.teacherid=#{value}
+  </select>
+    <select id="findExamLessonByteacherid"  parameterType="int" resultType="com.example.entity.Lesson" >
+ select taotiid,lessonname
+ from lesson
+ where teacherid=#{value}
+  </select>
+
+    <select id="findExamQuestionsById"  parameterType="int" resultType="com.example.entity.Questions" >
+ select id,subject,type,taotiid,
+ optiona,optionb,optionc,optiond,answer
+ from questions
+ where id=#{value}
+  </select>
+
+
+    <!-- 添加考试试题 -->
+    <insert id="addExamQuestions" parameterType="com.example.entity.Questions">
+		INSERT INTO questions
+			(
+			subject,
+			type,
+			taotiid,
+			optiona,optionb,
+			optionc,optiond,
+            answer
+			)
+			VALUES
+			(
+			#{subject},
+			#{type},
+			#{taotiid},
+			#{optiona},#{optionb},
+			#{optionc},#{optiond},
+			#{answer}
+			)
+	</insert>
+
+      <!-- 修改考试试题-->
+    <update id="updateExamQuestions" parameterType="com.example.entity.Questions">
+	 update questions
+    set subject = #{subject},
+    type=#{type},
+    taotiid=#{taotiid},
+    optiona=#{optiona},
+    optionb=#{optionb},
+    optionc=#{optionc},
+    optiond=#{optiond},
+    answer=#{answer}
+    where id=#{id}
+	</update>
+
+</mapper>

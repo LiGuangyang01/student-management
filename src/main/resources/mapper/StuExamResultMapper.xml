@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.StuExamResultMapper">
+    <!-- 添加学生考试成绩记录 -->
+    <insert id="addStuExamResult" parameterType="com.example.entity.StuResult">
+		INSERT INTO stu_examresult
+			(
+			taotiid,
+			username,
+			radioscores,
+			checkscores,
+			total,
+			createtime
+			)
+			VALUES
+			(
+			#{taotiid},
+			#{username},
+			#{radioscores},
+			#{checkscores},
+			#{total},
+			#{createtime}
+			)
+	</insert>
+	<!-- 查找考试学生信息 -->
+	<select id="findExamStuByUsername"  parameterType="String"  resultType="com.example.entity.StuInformation" >
+      select
+     stuid,stuname
+     from stu_information
+     where
+     username =#{value}
+  </select>
+
+   <!-- 查找用户所有记录	-->
+	<select id="findExamByUsername" parameterType="String" resultType="java.util.HashMap">
+    select
+    l.lessonname,r.radioscores,
+    r.checkscores,r.total,
+    r.createtime
+    from
+    stu_examresult r,lesson l
+    where
+     username =#{value}
+     and
+     r.taotiid=l.taotiid
+	</select>
+
+</mapper>

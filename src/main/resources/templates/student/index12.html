@@ -1,0 +1,106 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>笔记页</title>
+    <link rel="stylesheet" type="text/css" href="/static/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/easyui/themes/icon.css">
+    <script type="text/javascript" src="/static/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/easyui/locale/easyui-lang-zh_CN.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var spanText = $("#sp").text();
+            if (spanText == "") {
+                $("#ft").hide();
+            }
+        })
+    </script>
+    <style>
+        body {
+            /* background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%); */
+            /* background-image: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%); */
+            background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%);
+
+
+        }
+
+        .node {
+            width: 1000px;
+            height: 700px;
+            background-color: rgba(255, 255, 255, .3);
+            margin: 30px auto;
+            box-sizing: border-box;
+            padding: 24px;
+            border-radius: 10px;
+            box-shadow: 0 0 8px #999999;
+            display:flex;
+            flex-direction:row;
+
+
+
+        }
+
+        .left {
+          
+            height: 100%;
+            flex:1;
+            background-color: rgba(255, 255, 255, .7);
+            border-radius: 10px;
+            display: flex;
+            flex-direction:column;
+            align-items:center;
+            box-sizing: border-box;
+
+
+        }
+
+        .right {
+            
+            height: 100%;
+            flex:5;
+            float: left;
+            margin-left: 1%;
+        }
+
+        .right-top {
+            width: 100%;
+            height: 49%;
+
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, .7);
+        }
+
+        .right-bottom {
+            width: 100%;
+            margin-top: 1%;
+            height: 49%;
+            background-color: rgba(255, 255, 255, .7);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="node">
+        <div class="left">
+
+           
+        </div>
+        <div class="right">
+            <div class="right-top">
+
+            </div>
+            <div class="right-bottom">
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+</body>
+
+</html>

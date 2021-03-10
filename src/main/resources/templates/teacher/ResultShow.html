@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>后台管理</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
+    <!-- 导入easyui的资源文件 -->
+    <script type="text/javascript" src="/static/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/easyui/locale/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/easyui/themes/icon.css">
+    <link id="themeLink" rel="stylesheet" type="text/css" href="/static/easyui/themes/default/easyui.css">
+
+</head>
+<body>
+<!-- 数据表格组件 -->
+<!-- datagrid是个建表插件~用法 -->
+<table id="list" class="easyui-datagrid" url="manageStuExam" title="用户管理"  fit="true" border="false"
+       fitColumns="true" pagination="true"  singleSelect="true"  rownumbers="true"  toolbar="#tb">
+    <thead>
+    <tr>
+        <th field ="lessonname"  width="150" align="center">考试科目</th>
+                <th field="stuname"width="150" align="center">学生名</th>
+                <th field="stuid"  width="150" align="center">学号</th>
+                <th field="total"width="120" align="center">总得分</th>
+                <th field="radioscores" width="120" align="center">单选得分</th>
+                <th field="checkscores"width="120" align="center">多选得分</th>
+          <th  width="250" align="center" data-options="field:'createtime',
+              formatter:function(value){
+  							var date=new Date(value);
+  							var y=date.getFullYear();
+  							var m=date.getMonth()+1;
+  							var d=date.getDate();
+  							var h=date.getHours();
+  							var min=date.getMinutes();
+  							var s=date.getSeconds();
+  							return y+'-'+m+'-'+d+'&nbsp;&nbsp;&nbsp;'+h+':'+min+':'+s;
+                                 } ">考试时间</th>
+    </tr>
+    </thead>
+</table>
+
+</body>
+</html>

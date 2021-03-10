@@ -1,0 +1,119 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>在线考试系统-正在考试</title>
+    <link rel="stylesheet" type="text/css"
+          href="/static/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css"
+          href="/static/easyui/themes/icon.css">
+    <script type="text/javascript"
+            src="/static/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/easyui/jquery-3.1.1.js"></script>
+    <script type="text/javascript"
+            src="/static/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript"
+            src="/static/easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+
+        $(function(){
+            show_time(2*60);
+            $("#submi").click(function(){
+                var flag=confirm("确定要交卷吗？");
+                if(flag){
+                    return true;
+                }else{
+                    return false;
+                }
+            });
+            // // 将多选checkbox提交的数据拼接成字符串格式提交
+            //  var checkstr="";
+            //  $("input[type='checkbox']:checked").each(function(i){
+            //      if(i!=0)
+            //      {    //将所选的各项记录的id形成字符串，并以“，”分割
+            //          checkstr+=",";
+            //      }
+            //      checkstr += $(this).val();
+            //      alert( checkstr);
+            //      document.getElementById("checkbox1").value = checkstr
+            //       $("#checkbox1").attr("value",checkstr)
+            //  });
+
+        });
+
+        function show_time(totalTime){
+            if(totalTime==0){
+                alert("考试时间结束！系统将会自动提交试卷！");
+                $("form[name='examform']").submit();
+            }
+            var remainTime=totalTime-1;
+            var min = remainTime/60;
+            min=parseInt(min);
+            var s=remainTime%60;
+            if(s<10){
+                s="0"+s;
+            }
+            var str="0"+min+":"+s;
+            $("#sp4").text(str);
+            setTimeout("show_time("+remainTime+")",1000);
+        }
+
+    </script>
+</head>
+<body class="easyui-layout">
+<div data-options="region:'north'" style="line-height:60px;height:80px;background-image:url('/static/image/signinback.jpg');background-size:cover">
+    <font color="white" size="10" face="仿宋" style="font-weight:bold;margin-left:2%"> 在 线 考 试 网</font>
+    <font id="ft1" size="3px" style="margin-left:5%">当 前 用 户：<span id="sp" th:text="${session.username}"></span></font>
+    <font id="ft5" size="3px" style="margin-left:2%">考 试 科 目：<span id="sp5" th:text="${radioQuestionsList[0].lessonname}"></span></font>
+    <font id="ft3" size="3px" style="margin-left:2%">考 试 限 时：<span id="sp3">2分钟</span></font>
+    <font id="ft4" size="3px" style="margin-left:2%">剩 余 时 间：<span id="sp4"></span></font>
+</div>
+
+<div data-options="region:'center'">
+    <div style="margin-left:25%;font-size:15px">
+        <form action="postExam" method="post" name="examform">
+            <table cellpadding="20px">
+                <tr>
+                    <td><font style="font-weight:bold">一、单选题</font>（每题10分，答错不得分）</td>
+                </tr>
+                <tr th:each ="m,iterStat:${radioQuestionsList}" >
+                    <td th:text="${iterStat.index+1}+'、'+ ${m.subject}"></td>
+                    <td><input type="radio" name="radio1" th:name="${m.id}"  th:value="A" th:text="'A、'+${m.optiona}"></td>
+                    <td> <input type="radio" name="radio1" th:name="${m.id}" th:value="B" th:text="'B、'+${m.optionb}"></td>
+                    <td><input type="radio" name="radio1" th:name="${m.id}"  th:value="C" th:text="'C、'+${m.optionc}"></td>
+                    <td> <input type="radio" name="radio1" th:name="${m.id}" th:value="D" th:text="'D、'+${m.optiond}"></td>
+
+                </tr>
+            </table>
+
+            <table cellpadding="20px">
+                <tr>
+                    <td><font style="font-weight:bold">二、多选题</font>（每题20分，答错不得分）</td>
+                </tr>
+                <tr>
+                    <td><font style="font-weight:bold">输入格式</font>为A,B,C、B,C这种格式 </td>
+                </tr>
+                <tr th:each ="m1,iterStat:${checkboxQuestionsList}" >
+                    <td th:text="${iterStat.index+1}+'、'+ ${m1.subject}"></td>
+                    <td> <label type="text"  th:text="'A、'+${m1.optiona}"/></td>
+                    <td>  <label type="text" th:text="'B、'+${m1.optionb}"/></td>
+                    <td>  <label type="text" th:text="'C、'+${m1.optionc}"/></td>
+                    <td>  <label type="text" th:text="'D、'+${m1.optiond}"/>
+                        <br>
+                        <input type="text" name="check1" th:name="${m1.id}">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td><td>
+                    <input type="submit" width="100" value="交卷" id="submi"
+                           style="background: red; height: 35px; width: 100px; color: white;">
+                </td>
+                </tr>
+            </table>
+            <br>
+            <br>
+        </form>
+    </div>
+</div>
+</body>
+</html>

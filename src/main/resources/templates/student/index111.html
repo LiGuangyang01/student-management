@@ -1,0 +1,79 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>在线考试系统-首页</title>
+    <link rel="stylesheet" type="text/css" href="/static/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/easyui/themes/icon.css">
+    <script type="text/javascript" src="/static/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/easyui/locale/easyui-lang-zh_CN.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var spanText = $("#sp").text();
+            if (spanText == "") {
+                $("#ft").hide();
+            }
+        })
+    </script>
+    <style>
+        .bodyClass {
+            background-image: url('/static/image/true.jfif');
+            background-size: cover
+        }
+    </style>
+</head>
+
+<body class="bodyClass">
+    <div style="margin-top:2%">
+        <font color="#01814A" size="12px" face="仿宋" style="font-weight:bold;margin-left:34%"> 在 线 考 试 网</font>
+        <br>
+        <br>
+        <font id="ft" style="margin-left:35%">当 前 用 户：<span id="sp" th:text="${session.username}"></span></font>
+    </div>
+    <div style="margin-top:5%;margin-left:30%">
+        <table cellpadding="30px">
+            <tr>
+                <td>
+                    <a href="toExam" class="easyui-linkbutton" data-options="iconCls:'icon-edit',size:'large'">
+                        <font size="4px">在线考试</font>
+                    </a>
+                </td>
+                <td>
+                    <a href="queryResult" class="easyui-linkbutton" data-options="iconCls:'icon-search',size:'large'">
+                        <font size="4px">成绩查询</font>
+                    </a>
+                </td>
+                <td>
+                    <a href="" class="easyui-linkbutton" data-options="iconCls:'icon-group',size:'large'">
+                        <font size="4px">考试动态</font>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="toChangeInformation" class="easyui-linkbutton"
+                        data-options="iconCls:'icon-reload',size:'large'">
+                        <font size="4px">修改资料</font>
+                    </a>
+                </td>
+                <td>
+                    <a href="toChangepassword" class="easyui-linkbutton"
+                        data-options="iconCls:'icon-system',size:'large'">
+                        <font size="4px">修改密码</font>
+                    </a>
+                </td>
+                <td>
+                    <a href="tologin" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',size:'large'">
+                        <font size="4px">退出系统</font>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+   
+</body>
+
+</html>

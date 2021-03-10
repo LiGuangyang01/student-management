@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>后台管理</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
+    <!-- 导入easyui的资源文件 -->
+    <script type="text/javascript" src="/static/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/easyui/locale/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/easyui/themes/icon.css">
+    <link id="themeLink" rel="stylesheet" type="text/css" href="/static/easyui/themes/default/easyui.css">
+   <script  type="text/javascript">
+
+    $(function() {
+        // //打开编辑窗口
+        $("#addBtn").click(function () {
+            //清空表单数据
+            $("#editForm").form("clear");
+            $("#win").window("open");
+            $("#win").window("center");
+        });
+        //保存数据
+        $("#saveBtn").click(function () {
+            $("#editForm").form("submit", {
+                //url: 提交到后台的地址
+                url: "saveExamlesson",
+                //onSubmit: 表单提交前的回调函数，true：提交表单   false：不提交表单
+                onSubmit: function () {
+                    //判断表单的验证是否都通过了
+                    return $("#editForm").form("validate");
+                },
+                //success:服务器执行完毕回调函数
+                success: function (data) { //data: 服务器返回的数据，类型字符串类
+                    //要求Controller返回的数据格式：
+                    //成功：{success:true} 失败:{success:false,msg:错误信息}
+
+                    //把data字符串类型转换对象类型
+                    data = eval("(" + data + ")");
+                    if (data.success) {
+                        //关闭窗口
+                        $("#win").window("close");
+                        //刷新datagrid
+                        $("#list").datagrid("reload");
+                        $.messager.alert("提示", "保存成功", "info");
+                    } else {
+                        $.messager.alert("提示", "保存失败：" + data.msg, "error");
+                    }
+                }
+            });
+        });
+    })
+</script>
+
+
+</head>
+<body>
+<!-- 数据表格组件 -->
+<!-- datagrid是个建表插件~用法 -->
+<table id="list" class="easyui-datagrid" url="teaExamLesson" title="用户管理"  fit="true" border="false"
+       fitColumns="true" pagination="true"  singleSelect="true"  rownumbers="true"  toolbar="#tb">
+
+    <thead>
+    <tr>
+        <th field ="lessonname"  width="400">考试科目</th>
+
+        <th data-options="field:'createtime', width:400,
+              formatter:function(value){
+  							var date=new Date(value);
+  							var y=date.getFullYear();
+  							var m=date.getMonth()+1;
+  							var d=date.getDate();
+
+  							return y+'-'+m+'-'+d;
+                                 } ">时间</th>
+    </tr>
+    </thead>
+</table>
+<!-- 工具条 -->
+<div id="tb">
+    <a id="addBtn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">添加</a>
+</div>
+<!-- 编辑窗口 -->
+<div id="win" class="easyui-window" title="数据编辑" style="width:300px;height:300px"
+     data-options="iconCls:'icon-save',modal:true,closed:true">
+    <form id="editForm" method="post">
+        <br/>
+        &nbsp;&nbsp;课程名称:&nbsp;&nbsp;&nbsp;<input type="text" name="lessonname" class="easyui-validatebox" data-options="required:true"/><br/><br/>
+
+        <br/><br/>
+        &nbsp;&nbsp;<a id="saveBtn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'">保存</a>
+    </form>
+</div>
+</body>
+</html>

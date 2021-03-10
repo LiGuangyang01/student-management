@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+.ban {
+  width: 1200px;
+}
+.header {
+  width: 100%;
+  height: 50px;
+  background-color: #3165a8;
+}
+.bos {
+  background-color: #979ba3;
+  background: url('../image/bg.jpg');
+}
+.main {
+  width: 1200px;
+  min-height: 300px;
+  max-height: auto;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 0.9em;
+}
+.main .item {
+  margin: 10px;
+  width: 580px;
+  height: 250px;
+  background-color: rgba(59, 69, 90, 0.507);
+}
+.main .itemHeder {
+  width: 100%;
+  height: 40px;
+  background-color: rgba(74, 90, 110, 0.753);
+  line-height: 40px;
+  box-sizing: border-box;
+  padding: 0 20px;
+  color: #fff;
+}
+.main .itemMian {
+  width: 100%;
+  height: 210px;
+}
+.main .itemMian li {
+  float: left;
+  display: block;
+  list-style: none;
+  width: 50%;
+  height: 52px;
+  box-sizing: border-box;
+  padding: 10px;
+  transition: all 0.1s;
+  border-left: 0.1px solid rgba(167, 167, 167, 0.411);
+  border-bottom: 0.001em solid rgba(167, 167, 167, 0.4);
+}
+.main .itemMian li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.main .itemMian li .left {
+  height: 100%;
+  flex: 2;
+  vertical-align: middle;
+}
+.main .itemMian li .left img {
+  height: 100%;
+  vertical-align: middle;
+}
+.main .itemMian li .left span {
+  margin-left: 5px;
+  color: #fff;
+}
+.main .itemMian li .right {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  color: #cfd3d7;
+}
+.main .itemMian li:hover {
+  background-color: #7695af;
+}

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.AdminUserMapper">
+    <select id="findByUsername"  parameterType="String"  resultType="com.example.entity.User" >
+    select username,password,roles from t_login where username = #{value}
+  </select>
+<!--    返回修改界面表单的信息-->
+	<select id="findAdminById"  parameterType="int"  resultType="com.example.entity.User" >
+    select  id,username,password,roles from t_login where id = #{value}
+  </select>
+	<!--    返回修改界面表单的信息-->
+	<select id="findTeacherById"  parameterType="int"  resultType="com.example.entity.TeacherInformation" >
+    select  l.id,l.username,l.password,l.roles,t.worknumber,t.teachername
+    from t_login l,teacher_information t
+     where l.id = #{value}
+     and l.username=t.username
+  </select>
+
+<!--	返回所有管理员用户信息给前端页面-->
+    <select id="findAdminByroles"  parameterType="String"  resultType="com.example.entity.User" >
+    select  id,username,password,roles from t_login where roles = #{value}
+  </select>
+
+	<!--	返回所有教师用户信息给前端页面-->
+	<select id="findTeacherByroles"  parameterType="String"  resultType="com.example.entity.TeacherInformation" >
+    select  l.id,l.username,l.password,l.roles,t.worknumber,t.teachername
+    from t_login l,teacher_information t
+    where l.roles = #{value}
+    and  l.username=t.username
+  </select>
+
+
+
+	<!-- 进行增加各种登录用户-->
+    <insert id="addLoginUser" parameterType="com.example.entity.User">
+	INSERT INTO t_login
+			(
+			username,
+			password,
+			roles
+
+			)
+			VALUES
+			(
+			#{username},
+			#{password},
+			#{roles}
+			)
+    </insert>
+	<!-- 根据id修改各种登录用户数据 -->
+	<update id="updateLoginUser" parameterType="com.example.entity.User">
+		UPDATE t_login
+			SET
+			username = #{username} ,
+			password = #{password}
+
+		WHERE
+			id = #{id}
+	</update>
+
+
+	<!-- 删除指定id的loginUser -->
+	<delete id="deleteLoginUser" parameterType="Integer[]">
+		delete from t_login
+		<where>
+			id
+			<foreach collection="array" item="id" open="in (" close=")" separator=",">
+				#{id}
+			</foreach>
+		</where>
+	</delete>
+
+	<!-- 进行增加教师用户详细信息-->
+	<insert id="addTeacherInformation" parameterType="com.example.entity.TeacherInformation">
+	INSERT INTO teacher_information
+			(
+			username,
+			worknumber,
+			teachername
+			)
+			VALUES
+			(
+			#{username},
+			#{worknumber},
+			#{teachername}
+			)
+    </insert>
+
+     <!--根据id查找教师详细表的teacherId-->
+	<select id="findTeacheridById"  parameterType="int"  resultType="int" >
+    select  t.teacherid
+    from t_login l,teacher_information t
+    where l.id = #{value}
+    and
+    l.username=t.username
+  </select>
+
+	<!-- 修改教师用户信息 -->
+	<update id="updateTeacherInformation" parameterType="com.example.entity.TeacherInformation">
+		UPDATE teacher_information
+			SET
+			username = #{username} ,
+			worknumber = #{worknumber},
+			teachername=#{teachername}
+		WHERE
+			teacherid = #{teacherid}
+	</update>
+</mapper>
